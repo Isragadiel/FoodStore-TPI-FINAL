@@ -1,0 +1,91 @@
+
+@baseUrl = http://127.0.0.1:8000/api/v1
+
+### 1. Listar unidades de medida
+GET {{baseUrl}}/unidades-medida
+
+### 2. Listar categorías
+GET {{baseUrl}}/categorias
+
+### 3. Crear categoría
+POST {{baseUrl}}/categorias
+Content-Type: application/json
+
+{
+  "nombre": "Categoria Prueba HTTP",
+  "descripcion": "Prueba del segundo parcial"
+}
+
+### 4. Listar productos
+GET {{baseUrl}}/productos?skip=0&limit=10
+
+### 5. Buscar productos por nombre
+GET {{baseUrl}}/productos?search=arroz
+
+### 6. Filtrar productos disponibles
+GET {{baseUrl}}/productos?disponible=true
+
+### 7. Crear producto
+POST {{baseUrl}}/productos
+Content-Type: application/json
+
+{
+  "nombre": "Producto Prueba HTTP",
+  "descripcion": "Producto para verificar la API",
+  "precio_base": "1500.00",
+  "stock_cantidad": "10",
+  "disponible": true,
+  "unidad_venta_id": 5
+}
+
+### 8. Obtener producto inexistente (404)
+GET {{baseUrl}}/productos/999999
+
+### 9. Validar precio negativo (422)
+POST {{baseUrl}}/productos
+Content-Type: application/json
+
+{
+  "nombre": "Producto Precio Invalido",
+  "precio_base": "-100",
+  "stock_cantidad": "10",
+  "disponible": true,
+  "unidad_venta_id": 5
+}
+
+### 10. Validar stock fraccionario en unidad contable (422)
+POST {{baseUrl}}/productos
+Content-Type: application/json
+
+{
+  "nombre": "Producto Stock Fraccionario",
+  "precio_base": "1000",
+  "stock_cantidad": "2.5",
+  "disponible": true,
+  "unidad_venta_id": 5
+}
+
+### 11. Validar unidad inexistente (404)
+POST {{baseUrl}}/productos
+Content-Type: application/json
+
+{
+  "nombre": "Producto Unidad Inexistente",
+  "precio_base": "1000",
+  "stock_cantidad": "5",
+  "disponible": true,
+  "unidad_venta_id": 999999
+}
+
+### 12. Listar relaciones del producto 1
+GET {{baseUrl}}/productos/1/categorias
+
+### 13. Intentar asociar categoría duplicada (409)
+# Ejecutar únicamente si la relación producto 1 / categoría 2 ya existe.
+POST {{baseUrl}}/productos/1/categorias
+Content-Type: application/json
+
+{
+  "categoria_id": 2,
+  "es_principal": true
+}
