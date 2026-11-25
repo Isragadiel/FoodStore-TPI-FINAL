@@ -24,7 +24,7 @@ generales del negocio.
 ## 2. Enlaces de entrega
 
 - Repositorio: https://github.com/Isragadiel/FoodStore-TPI-FINAL
-- Video de demostracion: PENDIENTE_VIDEO
+- Video de demostracion: https://www.youtube.com/watch?v=PCcl3-R61BY
 
 ## 3. Tecnologias utilizadas
 
@@ -407,3 +407,4 @@ Israel Garcia.
 
 Trabajo Practico Integrador de Programacion IV.
 Universidad Tecnologica Nacional - 2026.
+
